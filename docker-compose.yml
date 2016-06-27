@@ -1,0 +1,75 @@
+version: '2'
+services:
+    node1:
+        image: dmp
+        command: [--cidr, 173.17.0.0/29, --net-if, eth0, --net, wan]
+        network_mode: dmp
+        ulimits:
+            nproc: 65535
+            nofile:
+                soft: 65535
+                hard: 65535
+    node2:
+        image: dmp
+        command: [--cidr, 173.17.0.10/29, --net-if, eth0, --net, wan]
+        network_mode: dmp
+        depends_on:
+            - node1
+        ulimits:
+            nproc: 65535
+            nofile:
+                soft: 65535
+                hard: 65535
+    node3:
+        image: dmp
+        command: [--cidr, 173.17.0.20/29, --net-if, eth0, --net, wan]
+        network_mode: dmp
+        depends_on:
+            - node2
+        ulimits:
+            nproc: 65535
+            nofile:
+                soft: 65535
+                hard: 65535
+    node4:
+        image: dmp
+        command: [--cidr, 173.17.0.30/29, --net-if, eth0, --net, wan]
+        network_mode: dmp
+        depends_on:
+            - node3
+        ulimits:
+            nproc: 65535
+            nofile:
+                soft: 65535
+                hard: 65535
+    node5:
+        image: dmp
+        command: [--cidr, 173.17.0.40/29, --net-if, eth0, --net, wan]
+        network_mode: dmp
+        depends_on:
+            - node4
+        ulimits:
+            nproc: 65535
+            nofile:
+                soft: 65535
+                hard: 65535
+    node6:
+        image: dmp
+        command: [--cidr, 173.17.0.50/29, --net-if, eth0, --net, wan]
+        network_mode: dmp
+        depends_on:
+            - node5
+        ulimits:
+            nproc: 65535
+            nofile:
+                soft: 65535
+                hard: 65535
+
+
+#networks:
+#    serf:
+#        ipam:
+#            config:
+#                - ip_range: 173.17.0.0/25
+#                  subnet: 173.17.0.0/25
+
